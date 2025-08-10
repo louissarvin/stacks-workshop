@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Stacks Session Data</title>
+</head>
+<body>
+    <h1>Clear Stacks Session Data</h1>
+    <button onclick="clearStorage()">Clear All Storage</button>
+    <div id="status"></div>
+
+    <script>
+        function clearStorage() {
+            // Clear localStorage
+            localStorage.clear();
+            
+            // Clear sessionStorage
+            sessionStorage.clear();
+            
+            // Clear specific Stacks keys
+            const keysToRemove = [
+                'blockstack-session',
+                'stacks-session',
+                'blockstack-transit-private-key',
+                'stacks-wallet-data'
+            ];
+            
+            keysToRemove.forEach(key => {
+                localStorage.removeItem(key);
+                sessionStorage.removeItem(key);
+            });
+            
+            document.getElementById('status').innerHTML = 
+                '<p style="color: green;">✅ Storage cleared! You can now close this tab and refresh your app.</p>';
+        }
+    </script>
+</body>
+</html>
